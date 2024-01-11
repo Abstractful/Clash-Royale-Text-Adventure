@@ -244,6 +244,11 @@ public class Game {
   }
   //adds the item to the player inventory array list and removes from the current room array list if it is a valid input
   private void obtainItem(Command command) {
+    if (!command.hasSecondWord()) {
+      // if there is no second word, we don't know where to go...
+      System.out.println("Please specify the item you would like to pick up");
+      return;
+    }
     Item item = currentRoom.getRoomItem(command.getSecondWord());
     if (item != null) {
       currentRoom.removeItem(item);
